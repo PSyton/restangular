@@ -251,9 +251,9 @@ describe("Restangular", function() {
       CallbackManager.firstErrorInterceptor = function() {};
       CallbackManager.secondErrorInterceptor = function() {};
 
-      spyOn(CallbackManager, "successCallback").andCallThrough();
-      spyOn(CallbackManager, "firstErrorInterceptor").andCallThrough();
-      spyOn(CallbackManager, "secondErrorInterceptor").andCallThrough();
+      spyOn(CallbackManager, "successCallback").and.callThrough();
+      spyOn(CallbackManager, "firstErrorInterceptor").and.callThrough();
+      spyOn(CallbackManager, "secondErrorInterceptor").and.callThrough();
 
       Restangular.addErrorInterceptor(CallbackManager.firstErrorInterceptor);
       Restangular.addErrorInterceptor(CallbackManager.secondErrorInterceptor);
@@ -283,8 +283,8 @@ describe("Restangular", function() {
         return false; // prevent promise to be rejected
       };
 
-      spyOn(CallbackManager, "successCallback").andCallThrough();
-      spyOn(CallbackManager, "errorCallback").andCallThrough();
+      spyOn(CallbackManager, "successCallback").and.callThrough();
+      spyOn(CallbackManager, "errorCallback").and.callThrough();
 
       Restangular.addErrorInterceptor(CallbackManager.firstErrorInterceptor);
       Restangular.addErrorInterceptor(CallbackManager.secondErrorInterceptor);
@@ -309,13 +309,13 @@ describe("Restangular", function() {
       };
 
       CallbackManager.firstErrorInterceptor = function(response) {
-        expect(response.status).toEqual(404);
+        expect(parseInt(response.status)).toEqual(404);
       };
       CallbackManager.secondErrorInterceptor = function() {};
 
-      spyOn(CallbackManager, "successCallback").andCallThrough();
-      spyOn(CallbackManager, "firstErrorInterceptor").andCallThrough();
-      spyOn(CallbackManager, "secondErrorInterceptor").andCallThrough();
+      spyOn(CallbackManager, "successCallback").and.callThrough();
+      spyOn(CallbackManager, "firstErrorInterceptor").and.callThrough();
+      spyOn(CallbackManager, "secondErrorInterceptor").and.callThrough();
 
       Restangular.addErrorInterceptor(CallbackManager.firstErrorInterceptor);
       Restangular.addErrorInterceptor(CallbackManager.secondErrorInterceptor);
@@ -800,7 +800,7 @@ describe("Restangular", function() {
       expect(copiedAccount).not.toBe(accountsModel[0]);
 
       // create a spy for one of the methods to capture the value of 'this'
-      spyOn(copiedAccount, 'getRestangularUrl').andCallFake(function() {
+      spyOn(copiedAccount, 'getRestangularUrl').and.callFake(function() {
         that = this;
       });
 
